@@ -1,9 +1,7 @@
-/* --- スーパーマリオ風デザイン --- */
-
 /* 色の変数を定義 */
 :root {
     /* --mario-sky-blue: #5C94FC; */ /* ← 前の元気な空色 */
-    --mario-sky-blue: #5cdff0e4;      /* ← 目に優しい、淡い水色 */
+    --mario-sky-blue: #57d6f2d3;        /* ← より明るい水色（スカイブルー） */
   
     /* 他の色の変数はそのまま */
     --mario-brick-brown: #D84800;
@@ -23,52 +21,31 @@
 body {
     background-color: var(--mario-sky-blue); /* マリオの空の色！ */
     font-family: 'Press Start 2P', cursive;
-    min-height: 100vh;
+    min-height: 50vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    overflow: hidden;
+    overflow-x: hidden; /* 横スクロールは無効、縦スクロールは有効 */
+    overflow-y: auto; /* 縦スクロールを有効にする */
     position: relative;
 }
 
-header {
-    /* ヘッダーエリア全体 */
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    background-color: transparent; /* 背景の帯は消す */
-    border-bottom: none; /* 下の線を消すためのコードやで */
-    /* 上下の余白（padding）を小さくして、エリアの高さを縮める */
-    padding: 20px 0;
-    text-align: center;
-    z-index: 1000;
-    backdrop-filter: blur(10px);
-    box-shadow: none;
-    /* 今まであった歯車アイコンの右端の余白があれば消す */
-    padding-right: 0;
-}
-
-header h1 {
-    /* ヘッダーの中の「おふろぐやで」の文字 */
-    color: var(--mario-text-black); /* 文字は黒に */
-    text-shadow: 3px 3px 0px #fbfbfb; /* 白い影をつける */
-    font-size: 2.5rem;
-    font-weight: bold;
-    margin: 0;
-    letter-spacing: 2px;
-    font-family: 'Press Start 2P', cursive;
-}
-
+/* 背景の水色部に表示するメインタイトル */
 body::before {
-    content: '';
+    content: 'おふろぐやで';
     position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 30%;
-    background: linear-gradient(to top, #8B4513 0%, #228B22 50%, #228B22 100%);
-    z-index: 1;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #FFFFFF; /* 白色の文字 */
+    text-shadow: 3px 3px 0px #000000; /* 黒い影をつける */
+    font-size: 3rem; /* 大きなフォントサイズ */
+    font-weight: bold;
+    letter-spacing: 3px;
+    font-family: 'Press Start 2P', cursive;
+    text-align: center;
+    z-index: 5; /* 他の要素より前面に */
+    pointer-events: none; /* クリックイベントを無効化 */
 }
 
 body::after {
@@ -77,26 +54,28 @@ body::after {
     bottom: 0;
     left: 0;
     right: 0;
-    height: 15%;
-    background: #8B4513;
-    z-index: 2;
+    height: 30%;
+    background-color: #228B22; /* 緑色の単色 */
+    z-index: 1;
 }
+
 
 .container {
     position: relative;
     width: 100%;
-    height: 100vh;
+    min-height: 100vh; /* heightからmin-heightに変更 */
     display: flex;
     align-items: flex-start;
     justify-content: center;
-    margin-top: 120px; /* メインタイトルに近づける */
+    margin-top: 120px; /* タイトルとの間に十分なスペースを確保 */
+    padding-bottom: 50px; /* 下部に余白を追加 */
 }
 
 .app-container {
     /* この display: flex; が横並びの魔法や！ */
     display: flex;
     justify-content: center;
-    align-items: flex-start;
+    align-items: stretch; /* 子要素の高さを揃える */
     gap: 40px; /* 左右の間のすき間 */
     padding: 20px; /* 全体のバランスを整える余白 */
     z-index: 10;
@@ -158,18 +137,20 @@ body::after {
     /* レイアウトのコードはそのままやで */
     flex: 1;
     max-width: 550px;
-    height: 70vh; /* 背景の緑部上部くらいの高さに調整 */
+    height: 500px !important; /* 固定の高さを強制指定 */
+    min-height: 500px !important; /* 最小高さも固定 */
+    max-height: 500px !important; /* 最大高さも固定 */
 
     /* BGMエリアとカレンダーエリア */
     background-color: var(--mario-block-yellow); /* ？ブロックの黄色 */
     border: 4px solid #000; /* 太い黒枠 */
     box-shadow: 6px 6px 0px rgba(0,0,0,0.7); /* ドット絵風の濃い影 */
     border-radius: 0; /* 角の丸みをなくす！ */
-    padding: 25px;
+    padding: 20px; /* パディングを少し縮小 */
     position: relative;
     z-index: 10;
     text-align: center;
-    overflow-y: hidden;
+    overflow: hidden; /* スクロールを完全に無効化 */
     transform: none;
     image-rendering: pixelated;
 }
@@ -182,13 +163,16 @@ body::after {
     max-width: 400px;
     position: relative;
     z-index: 10;
-    height: 70vh; /* 背景の緑部上部くらいの高さに調整 */
+    height: 500px !important; /* 固定の高さを強制指定 */
+    min-height: 500px !important; /* 最小高さも固定 */
+    max-height: 500px !important; /* 最大高さも固定 */
     /* BGMエリアとカレンダーエリア */
     background-color: var(--mario-block-yellow); /* ？ブロックの黄色 */
     border: 4px solid #000; /* 太い黒枠 */
     box-shadow: 6px 6px 0px rgba(0,0,0,0.7); /* ドット絵風の濃い影 */
     border-radius: 0; /* 角の丸みをなくす！ */
-    padding: 25px;
+    padding: 20px; /* contentと同じパディングに統一 */
+    overflow-y: auto; /* スクロールを有効化 */
 }
 
 .title {
@@ -1186,10 +1170,17 @@ body::after {
 
 /* スマートフォン対応のレスポンシブデザイン */
 @media (max-width: 768px) {
-    /* ヘッダーの調整 */
-    header h1 {
-        font-size: 1.8rem;
-        letter-spacing: 1px;
+    /* 背景タイトルの調整 */
+    body::before {
+        font-size: 2rem;
+        letter-spacing: 2px;
+        top: 15px;
+    }
+    
+    /* コンテナの調整 */
+    .container {
+        margin-top: 100px; /* タイトルとの間に十分なスペースを確保 */
+        padding-bottom: 30px;
     }
     
     /* メインコンテナを縦一列に変更 */
@@ -1198,24 +1189,29 @@ body::after {
         align-items: center;
         gap: 20px;
         padding: 10px;
+        width: 100%;
     }
     
     /* BGMエリアの調整 */
     .content {
-        width: 90%;
+        width: 95%;
         max-width: none;
         height: auto;
-        min-height: 400px;
+        min-height: auto; /* 最小高さを自動に */
+        max-height: none;
         padding: 15px;
+        overflow-y: visible; /* スクロールを無効にして全体を表示 */
     }
     
     /* カレンダーエリアの調整 */
     .sidebar {
-        width: 90%;
+        width: 95%;
         max-width: none;
         height: auto;
-        min-height: 350px;
+        min-height: auto; /* 最小高さを自動に */
+        max-height: none;
         padding: 15px;
+        overflow-y: visible; /* スクロールを無効にして全体を表示 */
     }
     
     /* タイトルの調整 */
@@ -1263,6 +1259,8 @@ body::after {
     /* カレンダーの調整 */
     .calendar {
         padding: 10px;
+        width: 100%;
+        box-sizing: border-box;
     }
     
     .calendar-header {
@@ -1276,17 +1274,26 @@ body::after {
     /* カレンダーの日付セルの調整 */
     .calendar-grid {
         gap: 3px;
+        width: 100%;
     }
     
     .day {
         padding: 3px 0;
         font-size: 0.8rem;
         line-height: 1.2rem;
+        min-height: 30px; /* 最小高さを設定 */
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
     
     .day-name {
         font-size: 0.7rem;
         margin-bottom: 3px;
+        min-height: 20px; /* 最小高さを設定 */
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
     
     /* 入浴完了ボタンの調整 */
@@ -1318,5 +1325,90 @@ body::after {
     
     .praise-message {
         font-size: 0.9rem;
+    }
+}
+
+
+/* より小さなスマホ画面（480px以下）での調整 */
+@media (max-width: 480px) {
+    /* 背景タイトルの調整 */
+    body::before {
+        font-size: 1.5rem;
+        letter-spacing: 1px;
+        top: 10px;
+    }
+    
+    /* コンテナの調整 */
+    .container {
+        margin-top: 80px; /* タイトルとの間に十分なスペースを確保 */
+        padding-bottom: 20px;
+    }
+    
+    /* BGMエリアとカレンダーエリアの調整 */
+    .content,
+    .sidebar {
+        width: 98%;
+        padding: 10px;
+    }
+    
+    /* タイトルの調整 */
+    .title {
+        font-size: 1.2rem;
+        margin-bottom: 0.8rem;
+    }
+    
+    /* 気分ボタンの調整 */
+    .mood-button {
+        padding: 8px 12px;
+        font-size: 0.6rem;
+    }
+    
+    /* BGMを決めるボタンの調整 */
+    .fortune-button {
+        padding: 0.8rem 1.5rem;
+        font-size: 0.9rem;
+        min-width: 150px;
+    }
+    
+    /* カレンダータイトルの調整 */
+    .calendar-title {
+        font-size: 0.7rem;
+        margin-bottom: 8px;
+    }
+    
+    /* カレンダーの調整 */
+    .calendar {
+        padding: 8px;
+    }
+    
+    .month-year {
+        font-size: 0.8rem;
+    }
+    
+    /* カレンダーの日付セルの調整 */
+    .day {
+        padding: 2px 0;
+        font-size: 0.7rem;
+        line-height: 1rem;
+        min-height: 25px;
+    }
+    
+    .day-name {
+        font-size: 0.6rem;
+        margin-bottom: 2px;
+        min-height: 18px;
+    }
+    
+    /* 入浴完了ボタンの調整 */
+    .complete-button {
+        padding: 0.5rem 1rem;
+        font-size: 0.7rem;
+    }
+    
+    /* 前月・次月ボタンの調整 */
+    #prev-month, #next-month {
+        width: 20px;
+        height: 20px;
+        font-size: 0.7rem;
     }
 }
