@@ -27,8 +27,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    overflow-x: hidden; /* 横スクロールは無効、縦スクロールは有効 */
-    overflow-y: auto; /* 縦スクロールを有効にする */
+    overflow: hidden;
     position: relative;
 }
 
@@ -86,12 +85,11 @@ body::after {
 .container {
     position: relative;
     width: 100%;
-    min-height: 100vh; /* heightからmin-heightに変更 */
+    height: 100vh;
     display: flex;
     align-items: flex-start;
     justify-content: center;
     margin-top: 120px; /* メインタイトルに近づける */
-    padding-bottom: 50px; /* 下部に余白を追加 */
 }
 
 .app-container {
@@ -160,8 +158,7 @@ body::after {
     /* レイアウトのコードはそのままやで */
     flex: 1;
     max-width: 550px;
-    min-height: 70vh; /* heightからmin-heightに変更 */
-    max-height: none; /* 最大高さ制限を解除 */
+    height: 70vh; /* 背景の緑部上部くらいの高さに調整 */
 
     /* BGMエリアとカレンダーエリア */
     background-color: var(--mario-block-yellow); /* ？ブロックの黄色 */
@@ -172,7 +169,7 @@ body::after {
     position: relative;
     z-index: 10;
     text-align: center;
-    overflow-y: auto; /* 縦スクロールを有効にする */
+    overflow-y: hidden;
     transform: none;
     image-rendering: pixelated;
 }
@@ -185,15 +182,13 @@ body::after {
     max-width: 400px;
     position: relative;
     z-index: 10;
-    min-height: 70vh; /* heightからmin-heightに変更 */
-    max-height: none; /* 最大高さ制限を解除 */
+    height: 70vh; /* 背景の緑部上部くらいの高さに調整 */
     /* BGMエリアとカレンダーエリア */
     background-color: var(--mario-block-yellow); /* ？ブロックの黄色 */
     border: 4px solid #000; /* 太い黒枠 */
     box-shadow: 6px 6px 0px rgba(0,0,0,0.7); /* ドット絵風の濃い影 */
     border-radius: 0; /* 角の丸みをなくす！ */
     padding: 25px;
-    overflow-y: auto; /* 縦スクロールを有効にする */
 }
 
 .title {
@@ -1197,41 +1192,30 @@ body::after {
         letter-spacing: 1px;
     }
     
-    /* コンテナの調整 */
-    .container {
-        margin-top: 100px; /* ヘッダー分の余白を調整 */
-        padding-bottom: 30px;
-    }
-    
     /* メインコンテナを縦一列に変更 */
     .app-container {
         flex-direction: column;
         align-items: center;
         gap: 20px;
         padding: 10px;
-        width: 100%;
     }
     
     /* BGMエリアの調整 */
     .content {
-        width: 95%;
+        width: 90%;
         max-width: none;
         height: auto;
-        min-height: auto; /* 最小高さを自動に */
-        max-height: none;
+        min-height: 400px;
         padding: 15px;
-        overflow-y: visible; /* スクロールを無効にして全体を表示 */
     }
     
     /* カレンダーエリアの調整 */
     .sidebar {
-        width: 95%;
+        width: 90%;
         max-width: none;
         height: auto;
-        min-height: auto; /* 最小高さを自動に */
-        max-height: none;
+        min-height: 350px;
         padding: 15px;
-        overflow-y: visible; /* スクロールを無効にして全体を表示 */
     }
     
     /* タイトルの調整 */
@@ -1279,8 +1263,6 @@ body::after {
     /* カレンダーの調整 */
     .calendar {
         padding: 10px;
-        width: 100%;
-        box-sizing: border-box;
     }
     
     .calendar-header {
@@ -1294,26 +1276,17 @@ body::after {
     /* カレンダーの日付セルの調整 */
     .calendar-grid {
         gap: 3px;
-        width: 100%;
     }
     
     .day {
         padding: 3px 0;
         font-size: 0.8rem;
         line-height: 1.2rem;
-        min-height: 30px; /* 最小高さを設定 */
-        display: flex;
-        align-items: center;
-        justify-content: center;
     }
     
     .day-name {
         font-size: 0.7rem;
         margin-bottom: 3px;
-        min-height: 20px; /* 最小高さを設定 */
-        display: flex;
-        align-items: center;
-        justify-content: center;
     }
     
     /* 入浴完了ボタンの調整 */
@@ -1345,88 +1318,5 @@ body::after {
     
     .praise-message {
         font-size: 0.9rem;
-    }
-}
-
-/* より小さなスマホ画面（480px以下）での調整 */
-@media (max-width: 480px) {
-    /* ヘッダーの調整 */
-    header h1 {
-        font-size: 1.5rem;
-        letter-spacing: 0.5px;
-    }
-    
-    /* コンテナの調整 */
-    .container {
-        margin-top: 80px;
-        padding-bottom: 20px;
-    }
-    
-    /* BGMエリアとカレンダーエリアの調整 */
-    .content,
-    .sidebar {
-        width: 98%;
-        padding: 10px;
-    }
-    
-    /* タイトルの調整 */
-    .title {
-        font-size: 1.2rem;
-        margin-bottom: 0.8rem;
-    }
-    
-    /* 気分ボタンの調整 */
-    .mood-button {
-        padding: 8px 12px;
-        font-size: 0.6rem;
-    }
-    
-    /* BGMを決めるボタンの調整 */
-    .fortune-button {
-        padding: 0.8rem 1.5rem;
-        font-size: 0.9rem;
-        min-width: 150px;
-    }
-    
-    /* カレンダータイトルの調整 */
-    .calendar-title {
-        font-size: 0.7rem;
-        margin-bottom: 8px;
-    }
-    
-    /* カレンダーの調整 */
-    .calendar {
-        padding: 8px;
-    }
-    
-    .month-year {
-        font-size: 0.8rem;
-    }
-    
-    /* カレンダーの日付セルの調整 */
-    .day {
-        padding: 2px 0;
-        font-size: 0.7rem;
-        line-height: 1rem;
-        min-height: 25px;
-    }
-    
-    .day-name {
-        font-size: 0.6rem;
-        margin-bottom: 2px;
-        min-height: 18px;
-    }
-    
-    /* 入浴完了ボタンの調整 */
-    .complete-button {
-        padding: 0.5rem 1rem;
-        font-size: 0.7rem;
-    }
-    
-    /* 前月・次月ボタンの調整 */
-    #prev-month, #next-month {
-        width: 20px;
-        height: 20px;
-        font-size: 0.7rem;
     }
 }
