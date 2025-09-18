@@ -1192,12 +1192,17 @@ body::after {
         width: 100%;
     }
     
+    /* BGMエリアとカレンダーエリアの共通調整 */
+    .content,
+    .sidebar {
+        height: auto;
+        min-height: initial;
+    }
+    
     /* BGMエリアの調整 */
     .content {
         width: 95%;
         max-width: none;
-        height: auto;
-        min-height: auto; /* 最小高さを自動に */
         max-height: none;
         padding: 15px;
         overflow-y: visible; /* スクロールを無効にして全体を表示 */
@@ -1207,9 +1212,7 @@ body::after {
     .sidebar {
         width: 95%;
         max-width: none;
-        height: 350px; /* スマホ表示時は高さを制限 */
-        min-height: 350px; /* 最小高さも制限 */
-        max-height: 350px; /* 最大高さも制限 */
+        max-height: 350px; /* 最大高さのみ制限 */
         padding: 15px;
         overflow-y: auto; /* スクロールを有効にしてコンテンツが収まるように */
     }
@@ -1354,18 +1357,18 @@ body::after {
         padding-bottom: 20px;
     }
     
-    /* BGMエリアとカレンダーエリアの調整 */
+    /* BGMエリアとカレンダーエリアの共通調整 */
     .content,
     .sidebar {
         width: 98%;
         padding: 10px;
+        height: auto;
+        min-height: initial;
     }
     
     /* より小さなスマホでのカレンダーエリアの高さ調整 */
     .sidebar {
-        height: 300px; /* より小さなスマホではさらに狭く */
-        min-height: 300px;
-        max-height: 300px;
+        max-height: 300px; /* 最大高さのみ制限 */
     }
     
     /* タイトルの調整 */
