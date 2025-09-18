@@ -1250,6 +1250,11 @@ body::after {
         font-size: 0.8rem;
     }
     
+    /* 選びなおすボタンコンテナの余白を削除 */
+    .reroll-container {
+        margin-top: 0;
+    }
+    
     /* カレンダータイトルの調整 */
     .calendar-title {
         font-size: 0.8rem;
@@ -1300,6 +1305,11 @@ body::after {
     .complete-button {
         padding: 0.6rem 1.2rem;
         font-size: 0.8rem;
+    }
+    
+    /* 入浴完了ボタンセクションの余白を削除 */
+    .bath-complete-section {
+        margin-top: 0;
     }
     
     /* 前月・次月ボタンの調整 */
@@ -1410,6 +1420,15 @@ body::after {
     .complete-button {
         padding: 0.5rem 1rem;
         font-size: 0.7rem;
+    }
+    
+    /* より小さなスマホでの余白削除 */
+    .reroll-container {
+        margin-top: 0;
+    }
+    
+    .bath-complete-section {
+        margin-top: 0;
     }
     
     /* 前月・次月ボタンの調整 */
